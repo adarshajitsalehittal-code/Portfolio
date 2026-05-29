@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Adarsh Ajit Salehittal | AI/ML Engineer</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --bg:#0a0a0f;--bg2:#111118;--bg3:#16161f;
+    --accent:#7c3aed;--accent2:#a78bfa;--accent3:#06b6d4;
+    --text:#e2e8f0;--muted:#94a3b8;--border:#1e1e2e;
+  }
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,15,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 5%}
+  .nav-inner{max-width:1100px;margin:auto;display:flex;align-items:center;justify-content:space-between;height:60px}
+  .logo{font-size:1.1rem;font-weight:700;color:var(--accent2);letter-spacing:.5px}
+  .nav-links{display:flex;gap:28px;list-style:none}
+  .nav-links a{color:var(--muted);text-decoration:none;font-size:.88rem;transition:.2s}
+  .nav-links a:hover{color:var(--accent2)}
+
+  /* HERO */
+  #hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:80px 5% 40px;position:relative;overflow:hidden}
+  .hero-glow{position:absolute;top:20%;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(124,58,237,.18) 0%,transparent 70%);pointer-events:none}
+  .avatar{width:130px;height:130px;border-radius:50%;margin:0 auto 24px;border:3px solid var(--accent2);box-shadow:0 0 30px rgba(124,58,237,.4);overflow:hidden;display:flex;align-items:center;justify-content:center}
+  .avatar img{width:100%;height:100%;object-fit:cover;object-position:top}
+  .hero h1{font-size:clamp(2rem,5vw,3.6rem);font-weight:800;line-height:1.15;margin-bottom:12px}
+  .hero h1 span{background:linear-gradient(90deg,var(--accent2),var(--accent3));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+  .tagline{font-size:1.1rem;color:var(--muted);margin-bottom:8px}
+  .type-wrap{font-size:1.25rem;color:var(--accent2);font-weight:600;height:36px;margin-bottom:32px}
+  .hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .btn{padding:11px 28px;border-radius:8px;font-size:.92rem;font-weight:600;cursor:pointer;text-decoration:none;transition:.25s;display:inline-flex;align-items:center;gap:8px}
+  .btn-primary{background:var(--accent);color:#fff;border:none}
+  .btn-primary:hover{background:#6d28d9;transform:translateY(-2px)}
+  .btn-outline{background:transparent;color:var(--accent2);border:1.5px solid var(--accent2)}
+  .btn-outline:hover{background:rgba(167,139,250,.1);transform:translateY(-2px)}
+  .hero-stats{display:flex;gap:32px;justify-content:center;margin-top:48px;flex-wrap:wrap}
+  .stat{text-align:center}
+  .stat-num{font-size:1.8rem;font-weight:800;color:var(--accent2)}
+  .stat-label{font-size:.78rem;color:var(--muted);margin-top:2px}
+
+  /* SECTIONS */
+  section{padding:80px 5%}
+  .section-inner{max-width:1100px;margin:auto}
+  .section-tag{display:inline-block;background:rgba(124,58,237,.15);color:var(--accent2);border:1px solid rgba(124,58,237,.3);border-radius:20px;padding:4px 14px;font-size:.78rem;font-weight:600;letter-spacing:.5px;margin-bottom:12px}
+  .section-title{font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;margin-bottom:8px}
+  .section-title span{background:linear-gradient(90deg,var(--accent2),var(--accent3));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+  .section-sub{color:var(--muted);font-size:.95rem;margin-bottom:48px}
+  .divider{width:60px;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent3));border-radius:2px;margin:12px 0 16px}
+
+  /* ABOUT */
+  #about{background:var(--bg2)}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+  .about-text p{color:var(--muted);line-height:1.8;margin-bottom:16px;font-size:.96rem}
+  .about-info{display:flex;flex-direction:column;gap:14px}
+  .info-row{display:flex;align-items:center;gap:12px;background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:14px 18px}
+  .info-icon{font-size:1.3rem;min-width:28px}
+  .info-label{font-size:.75rem;color:var(--muted);margin-bottom:2px}
+  .info-val{font-size:.9rem;font-weight:600;color:var(--text)}
+  .info-val a{color:var(--accent2);text-decoration:none}
+  .info-val a:hover{text-decoration:underline}
+
+  /* SKILLS */
+  .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+  .skill-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:24px}
+  .skill-card h3{font-size:.95rem;font-weight:700;margin-bottom:16px;color:var(--accent2)}
+  .tags{display:flex;flex-wrap:wrap;gap:8px}
+  .tag{background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.25);color:var(--accent2);border-radius:6px;padding:4px 12px;font-size:.78rem;font-weight:500}
+  .tag.cyan{background:rgba(6,182,212,.1);border-color:rgba(6,182,212,.25);color:var(--accent3)}
+  .tag.gray{background:rgba(148,163,184,.08);border-color:rgba(148,163,184,.2);color:var(--muted)}
+
+  /* PROJECTS */
+  #projects{background:var(--bg2)}
+  .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+  .proj-card{background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:28px;transition:.25s;position:relative;overflow:hidden}
+  .proj-card:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 12px 40px rgba(124,58,237,.2)}
+  .proj-badge{display:inline-block;font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:12px;margin-bottom:14px;letter-spacing:.4px}
+  .badge-web{background:rgba(6,182,212,.15);color:var(--accent3);border:1px solid rgba(6,182,212,.25)}
+  .badge-ml{background:rgba(124,58,237,.15);color:var(--accent2);border:1px solid rgba(124,58,237,.25)}
+  .badge-dl{background:rgba(236,72,153,.15);color:#f9a8d4;border:1px solid rgba(236,72,153,.25)}
+  .proj-card h3{font-size:1.05rem;font-weight:700;margin-bottom:10px}
+  .proj-card p{color:var(--muted);font-size:.88rem;line-height:1.7;margin-bottom:18px}
+  .proj-stack{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
+  .proj-stack span{font-size:.72rem;background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:3px 8px;color:var(--muted)}
+  .proj-links{display:flex;gap:12px}
+  .proj-link{font-size:.8rem;color:var(--accent2);text-decoration:none;display:flex;align-items:center;gap:4px;transition:.2s}
+  .proj-link:hover{color:#fff}
+
+  /* EDUCATION */
+  .edu-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:28px 32px;display:flex;gap:24px;align-items:flex-start}
+  .edu-icon{font-size:2rem;min-width:48px;height:48px;background:rgba(124,58,237,.15);border-radius:10px;display:flex;align-items:center;justify-content:center}
+  .edu-body h3{font-size:1.05rem;font-weight:700;margin-bottom:4px}
+  .edu-body .degree{color:var(--accent2);font-size:.9rem;font-weight:600;margin-bottom:6px}
+  .edu-body .meta{color:var(--muted);font-size:.85rem}
+  .cgpa{display:inline-block;margin-top:10px;background:rgba(6,182,212,.12);color:var(--accent3);border:1px solid rgba(6,182,212,.25);border-radius:6px;padding:4px 14px;font-size:.82rem;font-weight:700}
+
+  /* ACHIEVEMENTS */
+  #achievements{background:var(--bg2)}
+  .achieve-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+  .achieve-card{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:22px;display:flex;gap:16px;align-items:flex-start;transition:.2s}
+  .achieve-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+  .achieve-icon{font-size:1.6rem;min-width:36px}
+  .achieve-card p{color:var(--muted);font-size:.88rem;line-height:1.6}
+
+  /* CONTACT */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+  .contact-info h3{font-size:1.1rem;font-weight:700;margin-bottom:12px}
+  .contact-info p{color:var(--muted);font-size:.92rem;line-height:1.8;margin-bottom:24px}
+  .social-links{display:flex;flex-direction:column;gap:12px}
+  .social-link{display:flex;align-items:center;gap:14px;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:14px 18px;text-decoration:none;color:var(--text);transition:.2s}
+  .social-link:hover{border-color:var(--accent);background:var(--bg3)}
+  .social-icon{font-size:1.2rem;width:32px;text-align:center}
+  .social-text .s-label{font-size:.72rem;color:var(--muted)}
+  .social-text .s-val{font-size:.88rem;font-weight:600;color:var(--accent2)}
+  .contact-form{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:28px}
+  .contact-form h3{font-size:1.1rem;font-weight:700;margin-bottom:20px}
+  .form-group{margin-bottom:16px}
+  .form-group label{display:block;font-size:.8rem;color:var(--muted);margin-bottom:6px;font-weight:500}
+  .form-group input,.form-group textarea{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:10px 14px;color:var(--text);font-size:.9rem;outline:none;transition:.2s;font-family:inherit}
+  .form-group input:focus,.form-group textarea:focus{border-color:var(--accent)}
+  .form-group textarea{resize:vertical;min-height:100px}
+  #form-msg{margin-top:10px;font-size:.85rem;color:var(--accent2);display:none}
+
+  /* FOOTER */
+  footer{background:var(--bg2);border-top:1px solid var(--border);padding:28px 5%;text-align:center}
+  footer p{color:var(--muted);font-size:.85rem}
+  footer span{color:var(--accent2)}
+
+  /* ANIMATIONS */
+  @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+  .fade-up{animation:fadeUp .6s ease both}
+  .fade-up-d1{animation-delay:.1s}
+  .fade-up-d2{animation-delay:.2s}
+  .fade-up-d3{animation-delay:.3s}
+
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+  .cursor{display:inline-block;animation:blink 1s infinite}
+
+  /* RESPONSIVE */
+  @media(max-width:720px){
+    .about-grid,.contact-grid{grid-template-columns:1fr}
+    .nav-links{display:none}
+    .edu-card{flex-direction:column}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="logo">Adarsh.ai</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#achievements">Achievements</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div>
+    <div class="avatar fade-up"><img src="https://i.ibb.co/Mv7vqxC/IMG-3398.jpg" alt="Adarsh Ajit Salehittal"/></div>
+    <h1 class="hero h1 fade-up fade-up-d1">Hi, I'm <span>Adarsh Ajit</span><br/>Salehittal</h1>
+    <p class="tagline fade-up fade-up-d2">AI & Machine Learning Engineer</p>
+    <div class="type-wrap fade-up fade-up-d2"><span id="typed"></span><span class="cursor">|</span></div>
+    <div class="hero-btns fade-up fade-up-d3">
+      <a href="#projects" class="btn btn-primary">🚀 View Projects</a>
+      <a href="https://www.linkedin.com/in/adarsh-salehittal/" target="_blank" class="btn btn-outline">💼 LinkedIn</a>
+      <a href="https://github.com/adarshajitsalehittal-code" target="_blank" class="btn btn-outline">🐙 GitHub</a>
+    </div>
+    <div class="hero-stats fade-up fade-up-d3">
+      <div class="stat"><div class="stat-num">10+</div><div class="stat-label">Technologies</div></div>
+      <div class="stat"><div class="stat-num">5+</div><div class="stat-label">Projects</div></div>
+      <div class="stat"><div class="stat-num">∞</div><div class="stat-label">Curiosity</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="section-tag">ABOUT ME</div>
+    <h2 class="section-title">Who I <span>Am</span></h2>
+    <div class="divider"></div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm <strong>Adarsh Ajit Salehittal</strong>, a passionate AI/ML engineering student at MS Ramaiah University of Applied Sciences, Bengaluru. Currently in my 4th semester of B.Tech in Artificial Intelligence and Machine Learning with a CGPA of 9.43.</p>
+        <p>I am deeply fascinated by the intersection of deep learning, generative AI, and real-world problem solving. From building neural networks to exploring LLMs and transformers, I constantly push myself to work on impactful projects.</p>
+        <p>I actively practice on competitive platforms like LeetCode and Kaggle, and I'm always learning modern DevOps tools like Docker and Kubernetes to round out my engineering skills.</p>
+      </div>
+      <div class="about-info">
+        <div class="info-row"><div class="info-icon">📍</div><div><div class="info-label">Location</div><div class="info-val">Bengaluru, Karnataka, India</div></div></div>
+        <div class="info-row"><div class="info-icon">🎓</div><div><div class="info-label">University</div><div class="info-val">MS Ramaiah University of Applied Sciences</div></div></div>
+        <div class="info-row"><div class="info-icon">📧</div><div><div class="info-label">Email</div><div class="info-val"><a href="mailto:adarshajitsalehittal@gmail.com">adarshajitsalehittal@gmail.com</a></div></div></div>
+        <div class="info-row"><div class="info-icon">📞</div><div><div class="info-label">Phone</div><div class="info-val">+91-9019395970</div></div></div>
+        <div class="info-row"><div class="info-icon">🔗</div><div><div class="info-label">LinkedIn</div><div class="info-val"><a href="https://www.linkedin.com/in/adarsh-salehittal/" target="_blank">adarsh-salehittal</a></div></div></div>
+        <div class="info-row"><div class="info-icon">💻</div><div><div class="info-label">GitHub</div><div class="info-val"><a href="https://github.com/adarshajitsalehittal-code" target="_blank">adarshajitsalehittal-code</a></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="section-tag">SKILLS</div>
+    <h2 class="section-title">Technical <span>Arsenal</span></h2>
+    <div class="divider"></div>
+    <p class="section-sub">Technologies and tools I work with</p>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h3>🐍 Languages</h3>
+        <div class="tags">
+          <span class="tag">Python</span>
+          <span class="tag">SQL</span>
+          <span class="tag cyan">C/C++ (Basic)</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>📊 Data Science & ML</h3>
+        <div class="tags">
+          <span class="tag">NumPy</span>
+          <span class="tag">Pandas</span>
+          <span class="tag">Scikit-learn</span>
+          <span class="tag cyan">XGBoost</span>
+          <span class="tag gray">Statistics</span>
+          <span class="tag gray">Probability</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>🧠 Deep Learning & AI</h3>
+        <div class="tags">
+          <span class="tag">TensorFlow</span>
+          <span class="tag">ANN</span>
+          <span class="tag">CNN</span>
+          <span class="tag">RNN</span>
+          <span class="tag cyan">Transformers</span>
+          <span class="tag cyan">NLP</span>
+          <span class="tag">LLMs</span>
+          <span class="tag">GANs</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>⚙️ Tools & Platforms</h3>
+        <div class="tags">
+          <span class="tag">Jupyter</span>
+          <span class="tag cyan">Kaggle</span>
+          <span class="tag">Git</span>
+          <span class="tag">GitHub</span>
+          <span class="tag gray">Docker</span>
+          <span class="tag gray">Kubernetes</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>📈 Data Visualization</h3>
+        <div class="tags">
+          <span class="tag">Matplotlib</span>
+          <span class="tag cyan">Seaborn</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>🧪 Model Evaluation</h3>
+        <div class="tags">
+          <span class="tag">Precision</span>
+          <span class="tag cyan">Recall</span>
+          <span class="tag">F1 Score</span>
+          <span class="tag gray">Bias-Variance Tradeoff</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <div class="section-tag">PROJECTS</div>
+    <h2 class="section-title">What I've <span>Built</span></h2>
+    <div class="divider"></div>
+    <p class="section-sub">Real-world projects in ML, AI, and Web Development</p>
+    <div class="projects-grid">
+
+      <div class="proj-card">
+        <span class="proj-badge badge-web">WEB APP</span>
+        <h3>🚑 Ambulance Booking Platform</h3>
+        <p>A real-time web-based platform to book and track ambulance requests. Features a user-friendly interface, backend booking logic, and integrated user data management system.</p>
+        <div class="proj-stack">
+          <span>Python</span><span>Flask</span><span>HTML/CSS</span><span>SQL</span>
+        </div>
+        <div class="proj-links">
+          <a href="https://github.com/adarshajitsalehittal-code" target="_blank" class="proj-link">🐙 GitHub →</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <span class="proj-badge badge-ml">MACHINE LEARNING</span>
+        <h3>📊 ML Classification Projects</h3>
+        <p>Multiple supervised learning projects exploring classification and regression tasks using Scikit-learn, XGBoost, and statistical modeling on real-world datasets from Kaggle.</p>
+        <div class="proj-stack">
+          <span>Python</span><span>Scikit-learn</span><span>XGBoost</span><span>Pandas</span>
+        </div>
+        <div class="proj-links">
+          <a href="https://github.com/adarshajitsalehittal-code?tab=repositories" target="_blank" class="proj-link">🐙 GitHub →</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <span class="proj-badge badge-dl">DEEP LEARNING</span>
+        <h3>🧠 Neural Network Projects</h3>
+        <p>Deep learning experiments with ANN, CNN, and RNN architectures using TensorFlow. Explored image classification, sequence modeling, and early-stage generative AI with GANs.</p>
+        <div class="proj-stack">
+          <span>TensorFlow</span><span>CNN</span><span>RNN</span><span>GAN</span>
+        </div>
+        <div class="proj-links">
+          <a href="https://github.com/adarshajitsalehittal-code?tab=repositories" target="_blank" class="proj-link">🐙 GitHub →</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <span class="proj-badge badge-dl">NLP / LLM</span>
+        <h3>🤖 NLP & Transformer Experiments</h3>
+        <p>Exploring Natural Language Processing with transformers and large language models. Hands-on projects in text classification, sentiment analysis, and understanding LLM architectures.</p>
+        <div class="proj-stack">
+          <span>Transformers</span><span>NLP</span><span>Python</span><span>LLMs</span>
+        </div>
+        <div class="proj-links">
+          <a href="https://github.com/adarshajitsalehittal-code?tab=repositories" target="_blank" class="proj-link">🐙 GitHub →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-inner">
+    <div class="section-tag">EDUCATION</div>
+    <h2 class="section-title">Academic <span>Journey</span></h2>
+    <div class="divider"></div>
+    <p class="section-sub" style="margin-bottom:28px">Where I'm building my foundation</p>
+    <div class="edu-card">
+      <div class="edu-icon">🎓</div>
+      <div class="edu-body">
+        <h3>MS Ramaiah University of Applied Sciences</h3>
+        <div class="degree">B.Tech — Artificial Intelligence and Machine Learning</div>
+        <div class="meta">Bengaluru, Karnataka &nbsp;•&nbsp; 4th Semester (Currently Pursuing)</div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="section-inner">
+    <div class="section-tag">ACHIEVEMENTS</div>
+    <h2 class="section-title">What I've <span>Done</span></h2>
+    <div class="divider"></div>
+    <p class="section-sub">Milestones and recognitions along the way</p>
+    <div class="achieve-grid">
+      <div class="achieve-card"><div class="achieve-icon">🧠</div><div><strong>Active AI/ML Learner</strong><p>Continuously exploring real-world AI/ML applications and staying up to date with the latest research and tools.</p></div></div>
+      <div class="achieve-card"><div class="achieve-icon">⚡</div><div><strong>Competitive Coding</strong><p>Practiced algorithmic problems on LeetCode and data science challenges on Kaggle to sharpen problem-solving skills.</p></div></div>
+      <div class="achieve-card"><div class="achieve-icon">🚀</div><div><strong>Project Builder</strong><p>Built multiple mini and major projects spanning Machine Learning, Deep Learning, and full-stack web applications.</p></div></div>
+      <div class="achieve-card"><div class="achieve-icon">🏆</div><div><strong>Hackathon Participant</strong><p>Participated in hackathons and technical events, collaborating with teams to build innovative solutions under pressure.</p></div></div>
+      <div class="achieve-card"><div class="achieve-icon">🐳</div><div><strong>Modern DevOps Learning</strong><p>Continuously upskilling in modern deployment tools including Docker and Kubernetes for production-ready AI systems.</p></div></div>
+      <div class="achieve-card"><div class="achieve-icon">🌐</div><div><strong>Open Source Interest</strong><p>Passionate about contributing to open source projects and giving back to the developer community through GitHub.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-tag">CONTACT</div>
+    <h2 class="section-title">Let's <span>Connect</span></h2>
+    <div class="divider"></div>
+    <p class="section-sub">Open to collaborations, internships, and interesting projects</p>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>Find me on</h3>
+        <p>Whether you have a project idea, an opportunity, or just want to talk AI — feel free to reach out anytime!</p>
+        <div class="social-links">
+          <a href="https://www.linkedin.com/in/adarsh-salehittal/" target="_blank" class="social-link">
+            <span class="social-icon">💼</span>
+            <div class="social-text"><div class="s-label">LinkedIn</div><div class="s-val">adarsh-salehittal</div></div>
+          </a>
+          <a href="https://github.com/adarshajitsalehittal-code?tab=repositories" target="_blank" class="social-link">
+            <span class="social-icon">🐙</span>
+            <div class="social-text"><div class="s-label">GitHub</div><div class="s-val">adarshajitsalehittal-code</div></div>
+          </a>
+          <a href="mailto:adarshajitsalehittal@gmail.com" class="social-link">
+            <span class="social-icon">📧</span>
+            <div class="social-text"><div class="s-label">Email</div><div class="s-val">adarshajitsalehittal@gmail.com</div></div>
+          </a>
+          <a href="tel:+919019395970" class="social-link">
+            <span class="social-icon">📞</span>
+            <div class="social-text"><div class="s-label">Phone</div><div class="s-val">+91-9019395970</div></div>
+          </a>
+        </div>
+      </div>
+      <div class="contact-form">
+        <h3>Send a Message</h3>
+        <div class="form-group"><label>Your Name</label><input type="text" id="f-name" placeholder="John Doe"/></div>
+        <div class="form-group"><label>Email Address</label><input type="email" id="f-email" placeholder="john@example.com"/></div>
+        <div class="form-group"><label>Message</label><textarea id="f-msg" placeholder="Hi Adarsh, I'd love to collaborate on..."></textarea></div>
+        <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="handleForm()">Send Message →</button>
+        <p id="form-msg">✅ Thanks! Your message has been noted. Reach out via email directly for a prompt reply.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Designed & Built by <span>Adarsh Ajit Salehittal</span> · AI/ML Engineer · Bengaluru, India</p>
+  <p style="margin-top:6px;font-size:.78rem">© 2025 Adarsh Ajit Salehittal. All rights reserved.</p>
+</footer>
+
+<script>
+// Typewriter
+const phrases = [
+  "Building Intelligent Systems 🧠",
+  "Deep Learning Enthusiast 🔬",
+  "NLP & Transformer Explorer 🤖",
+  "Data Science Practitioner 📊",
+  "Open Source Contributor 🌐"
+];
+let pi=0,ci=0,del=false;
+const el=document.getElementById('typed');
+function type(){
+  const cur=phrases[pi];
+  if(!del){
+    el.textContent=cur.slice(0,++ci);
+    if(ci===cur.length){del=true;setTimeout(type,1800);return}
+  } else {
+    el.textContent=cur.slice(0,--ci);
+    if(ci===0){del=false;pi=(pi+1)%phrases.length}
+  }
+  setTimeout(type,del?50:80);
+}
+type();
+
+// Form
+async function handleForm(){
+  const n=document.getElementById('f-name').value.trim();
+  const e=document.getElementById('f-email').value.trim();
+  const m=document.getElementById('f-msg').value.trim();
+  const msg=document.getElementById('form-msg');
+  if(!n||!e||!m){msg.style.display='block';msg.style.color='#f87171';msg.textContent='⚠️ Please fill in all fields.';return}
+  msg.style.display='block';msg.style.color='var(--muted)';msg.textContent='⏳ Sending...';
+  try{
+    const res=await fetch('https://formspree.io/f/mkoeebpd',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({name:n,email:e,message:m})
+    });
+    if(res.ok){
+      msg.style.color='var(--accent2)';
+      msg.textContent='✅ Message sent! Adarsh will get back to you soon.';
+      document.getElementById('f-name').value='';
+      document.getElementById('f-email').value='';
+      document.getElementById('f-msg').value='';
+    } else {
+      msg.style.color='#f87171';msg.textContent='❌ Something went wrong. Please email directly.';
+    }
+  } catch(err){
+    msg.style.color='#f87171';msg.textContent='❌ Network error. Please try again.';
+  }
+}
+
+// Scroll animations
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{
+  if(e.isIntersecting)e.target.style.animation='fadeUp .6s ease both';
+}),{threshold:.1});
+document.querySelectorAll('.skill-card,.proj-card,.achieve-card,.edu-card,.info-row').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
